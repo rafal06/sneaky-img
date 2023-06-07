@@ -10,7 +10,7 @@ server = HTTP::Server.new do |context|
   end
 
   client_ip = context.request.remote_address.to_s.split(':')[0]
-  accept_lang = context.request.headers["Accept-Language"]  # TODO: remove the quality value
+  accept_lang = context.request.headers["Accept-Language"].gsub(/;q=...+?/, "").gsub(',', ", ")
   user_agent = context.request.headers["User-Agent"]
 
   browser = ""
