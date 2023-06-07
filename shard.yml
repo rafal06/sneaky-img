@@ -1,0 +1,13 @@
+name: sneaky-img
+version: 0.1.0
+
+authors:
+  - Rafał Baran <rafal06@duck.com>
+
+targets:
+  sneaky-img:
+    main: src/sneaky-img.cr
+
+crystal: 1.8.2
+
+license: MIT
