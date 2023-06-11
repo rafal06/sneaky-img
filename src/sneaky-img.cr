@@ -1,9 +1,16 @@
 VERSION = "0.1.0"
 require "http/server"
 require "./svg"
+require "./assets"
 
-server = HTTP::Server.new do |context|
+server = HTTP::Server.new [
+  HTTP::ErrorHandler.new,
+  HTTP::LogHandler.new,
+  HTTP::CompressHandler.new,
+  AssetsHandler.new(AssetsStorage),
+] do |context|
   # puts context.request.inspect
+  # puts context.request.query_params.inspect
 
   if ip = context.request.headers["X-Real-IP"]? # When using a reverse proxy that guarantees this field.
     context.request.remote_address = Socket::IPAddress.new(ip, 0)
