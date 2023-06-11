@@ -1,4 +1,4 @@
-def gen_svg(data)
+def gen_svg(data, image = nil)
   svg = %{
     <svg
       width="500"
@@ -6,6 +6,7 @@ def gen_svg(data)
       viewBox="0 0 500 165"
       fill="white"
       xmlns="http://www.w3.org/2000/svg"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
       role="img"
       aria-labelledby="descId"
     >
@@ -31,6 +32,24 @@ def gen_svg(data)
         stroke-opacity="0"
       />
   }
+
+  if image
+    svg += %{
+      <clipPath id="round" clipPathUnits="objectBoundingBox">
+        <circle cx=".5" cy=".5" r=".5" />
+      </clipPath>
+
+      <image
+        id="image"
+        xlink:href="/#{image}"
+        x="370"
+        y="30"
+        height="100"
+        width="100"
+        clip-path="url(#round)"
+      />
+    }
+  end
 
   data.each_with_index do |key, value, index|
     svg += %{

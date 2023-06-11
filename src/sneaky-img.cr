@@ -10,7 +10,14 @@ server = HTTP::Server.new [
   AssetsHandler.new(AssetsStorage),
 ] do |context|
   # puts context.request.inspect
-  # puts context.request.query_params.inspect
+  
+  image = nil
+  case context.request.query_params["image"]?
+  when "caterpillar"
+    image = "caterpillar.jpg"
+  when "trollface"
+    image = "trollface.jpg"
+  end
 
   if ip = context.request.headers["X-Real-IP"]? # When using a reverse proxy that guarantees this field.
     context.request.remote_address = Socket::IPAddress.new(ip, 0)
@@ -46,7 +53,7 @@ server = HTTP::Server.new [
   puts client_data
 
   context.response.content_type = "image/svg+xml"
-  context.response.print gen_svg(client_data)
+  context.response.print gen_svg(client_data, image)
 end
 
 address = server.bind_tcp "0.0.0.0", 8001
