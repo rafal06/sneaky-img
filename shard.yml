@@ -11,3 +11,8 @@ targets:
 crystal: 1.8.2
 
 license: MIT
+
+dependencies:
+  baked_file_system:
+    github: schovi/baked_file_system
+    version: 0.10.0
