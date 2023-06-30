@@ -1,20 +1,30 @@
 # Sneaky img
 
-A normal svg, which you can use in your github profile readme, but it's generated dynamically and shows user's IP, browser, platform and installed languages on the system.
+A normal svg, which you can use on your site or in markdown, but it's generated dynamically and shows user's IP, browser, platform and installed languages on the system.
+
+![localhost:8001 opened in browser. There's an svg image showing your IP, Browser (Firefox 115.0), Platform (X11; Linux x86_64), and system languages (en-US, en)](screenshots/img.png)
+
+> **Note**  
+> This doesn't work on GitHub and GitLab.com, because they proxy images from README files
 
 ## Installation
 
-TODO: Write installation instructions here
+Just run the executable on some server.
 
 ## Usage
 
 Just embed it in your markdown, as follows:
 
-    [Your IP and info about your browser](https://address-of-your.instance/)
+    ![](https://address-of-your.instance/)
 
-## Development
+Additionally, you can append the url with `?image=caterpillar` or `?image=trollface` 
 
-TODO: Write development instructions here
+![](screenshots/img_1.png)
+![](screenshots/img_2.png)
+
+## Building
+
+In order to compile it, you have to have [Crystal](https://crystal-lang.org/) installed. Then clone this repository and run `shards build --production`. The binary will be in a `bin` folder.
 
 ## Contributing
 
