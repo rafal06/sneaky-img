@@ -1,4 +1,4 @@
-VERSION = "0.1.0"
+VERSION = "1.0.0"
 require "http/server"
 require "./svg"
 require "./assets"
@@ -10,7 +10,7 @@ server = HTTP::Server.new [
   AssetsHandler.new(AssetsStorage),
 ] do |context|
   # puts context.request.inspect
-  
+
   image = nil
   case context.request.query_params["image"]?
   when "caterpillar"
